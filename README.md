@@ -1,7 +1,7 @@
 # Quiz Game
 Simple quiz application.
 
-## Used tecnologies:
+## Used technologies:
 + React
 + TypeScript
 + Chakra UI

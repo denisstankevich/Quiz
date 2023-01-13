@@ -25,9 +25,12 @@
   ],
   "rules": {
     "react/react-in-jsx-scope": "off",
-    "react/self-closing-comp": ["error", {
-      "component": false,
-      "html": true
-    }]
+    "react/self-closing-comp": [
+      "error",
+      {
+        "component": false,
+        "html": true
+      }
+    ]
   }
 }

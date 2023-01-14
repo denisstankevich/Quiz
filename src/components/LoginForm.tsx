@@ -85,15 +85,7 @@ export default function LoginForm() {
               </InputGroup>
               <FormErrorMessage>{errors.password}</FormErrorMessage>
             </FormControl>
-            <Button
-              type='submit'
-              isDisabled={
-                !!(errors.email && touched.email) ||
-                !!(errors.password && touched.password)
-              }
-            >
-              Sign in
-            </Button>
+            <Button type='submit'>Sign in</Button>
           </Stack>
         </Form>
       )}

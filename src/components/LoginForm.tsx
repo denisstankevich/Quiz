@@ -1,17 +1,26 @@
+import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import {
   Button,
   FormControl,
   FormErrorMessage,
   FormLabel,
   HStack,
+  IconButton,
   Input,
+  InputGroup,
+  InputRightElement,
   Link,
   Stack,
 } from '@chakra-ui/react';
 import { Form, Formik } from 'formik';
+import { useState } from 'react';
 import validate from '../utils/validator';
 
 export default function LoginForm() {
+  const [visible, setVisible] = useState(false);
+  const toggleVisability = () => {
+    setVisible(!visible);
+  };
   return (
     <Formik
       initialValues={{
@@ -37,16 +46,15 @@ export default function LoginForm() {
             <FormControl isInvalid={!!(errors.email && touched.email)}>
               <FormLabel fontSize='sm' htmlFor='email'>
                 Email address
-                <Input
-                  type='email'
-                  name='email'
-                  placeholder='email@example.com'
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.email}
-                />
-                <FormErrorMessage>{errors.email}</FormErrorMessage>
               </FormLabel>
+              <Input
+                type='email'
+                name='email'
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.email}
+              />
+              <FormErrorMessage>{errors.email}</FormErrorMessage>
             </FormControl>
             <FormControl isInvalid={!!(errors.password && touched.password)}>
               <HStack justifyContent='space-between' mb='8px'>
@@ -57,14 +65,24 @@ export default function LoginForm() {
                   Forgot password?
                 </Link>
               </HStack>
-              <Input
-                type='password'
-                placeholder='password'
-                name='password'
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.password}
-              />
+              <InputGroup>
+                <Input
+                  type={visible ? 'text' : 'password'}
+                  name='password'
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.password}
+                />
+                <InputRightElement>
+                  <IconButton
+                    size='sm'
+                    variant='ghost'
+                    aria-label='toggle password visibility'
+                    icon={visible ? <ViewOffIcon /> : <ViewIcon />}
+                    onClick={toggleVisability}
+                  />
+                </InputRightElement>
+              </InputGroup>
               <FormErrorMessage>{errors.password}</FormErrorMessage>
             </FormControl>
             <Button
